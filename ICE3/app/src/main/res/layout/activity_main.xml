@@ -43,49 +43,49 @@
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/clear"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="clear"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="clear"
+            android:text="@string/clear"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/percentageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/percent"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="percent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="percent"
+            android:text="@string/percent"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/backspaceButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/backspace"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="backspace"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="backspace"
+            android:text="@string/backspace"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/divisionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/divide"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="divide"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="divide"
+            android:text="@string/divide"
+            android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
     <LinearLayout
@@ -101,49 +101,49 @@
             android:id="@+id/sevenButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/seven"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="7"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="7"
+            android:text="@string/seven"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/eightButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/eight"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="8"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="8"
+            android:text="@string/eight"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/nineButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/nine"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="9"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="9"
+            android:text="@string/nine"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/multiplyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/multiply"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="multiply"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="multiply"
+            android:text="@string/multiply"
+            android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
     <LinearLayout
@@ -196,13 +196,13 @@
             android:id="@+id/subtractionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/subtract"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="subtract"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="subtract"
+            android:text="@string/subtract"
+            android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
     <LinearLayout
@@ -254,13 +254,13 @@
             android:id="@+id/additionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/add"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="add"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="add"
+            android:text="@string/add"
+            android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
     <LinearLayout
@@ -277,13 +277,13 @@
             android:id="@+id/plusMinusButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/plus_minus"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="+-"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="+-"
+            android:text="@string/plus_minus"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/zero"
@@ -313,13 +313,13 @@
             android:id="@+id/equalsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/equals"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="equality"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="equality"
+            android:text="@string/equals"
+            android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
 

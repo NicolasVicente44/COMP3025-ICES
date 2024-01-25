@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="operatorButtonColor">#E8B622</color>
+    <color name="functionButtonColor">#494949</color>
+    <color name="numberButtonBackgroundColor">#959595</color>
 </resources>
