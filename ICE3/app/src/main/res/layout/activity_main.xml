@@ -44,9 +44,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="C"
+            android:text="@string/clear"
             android:textSize="@dimen/buttonIconSize"
-            android:tag="clear"/>
+            android:tag="clear"
+            android:fontFamily="@font/fa_solid_900"
+            />
 
         <Button
             android:id="@+id/percentageButton"
@@ -54,9 +56,37 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="%"
+            android:text="@string/percent"
             android:textSize="@dimen/buttonIconSize"
-            android:tag="percent"/>
+            android:tag="percent"
+            android:fontFamily="@font/fa_solid_900"
+            />
+
+        <Button
+            android:id="@+id/backspaceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:text="@string/backspace"
+            android:textSize="@dimen/buttonIconSize"
+            android:tag="backspace"
+            android:fontFamily="@font/fa_solid_900"
+            />
+
+        <Button
+            android:id="@+id/divisionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:text="@string/divide"
+            android:textSize="@dimen/buttonIconSize"
+            android:tag="divide"
+            android:fontFamily="@font/fa_solid_900"
+            />
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

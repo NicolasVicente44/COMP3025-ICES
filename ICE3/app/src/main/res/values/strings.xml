@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">COMP3025-W24-Week-3</string>
+    <string name="clear">\u0043</string>
+    <string name="percent">\u0025</string>
+    <string name="backspace">\uf55a</string>
+    <string name="divide">\uf529</string>
+    <string name="multiply">\uf00d</string>
+    <string name="subtract">\f068</string>
+    <string name="add">\002b</string>
+    <string name="plus_minus">\e43c</string>
+    <string name="equals">\003d</string>
+
+    <string name="zero">\0030</string>
+    <string name="one">\0031</string>
+    <string name="two">\0032</string>
+    <string name="three">\0033</string>
+    <string name="four">\0034</string>
+    <string name="five">\0035</string>
+    <string name="six">\0036</string>
+    <string name="seven">\0037</string>
+    <string name="eight">\0038</string>
+    <string name="nine">\0039</string>
+
 </resources>
