@@ -5,20 +5,21 @@
     <string name="backspace">\uf55a</string>
     <string name="divide">\uf529</string>
     <string name="multiply">\uf00d</string>
-    <string name="subtract">\f068</string>
-    <string name="add">\002b</string>
-    <string name="plus_minus">\e43c</string>
-    <string name="equals">\003d</string>
+    <string name="subtract">\uf068</string>
+    <string name="add">\u002b</string>
+    <string name="plus_minus">\ue43c</string>
+    <string name="equals">\u003d</string>
 
-    <string name="zero">\0030</string>
-    <string name="one">\0031</string>
-    <string name="two">\0032</string>
-    <string name="three">\0033</string>
-    <string name="four">\0034</string>
-    <string name="five">\0035</string>
-    <string name="six">\0036</string>
-    <string name="seven">\0037</string>
-    <string name="eight">\0038</string>
-    <string name="nine">\0039</string>
+    <string name="zero">\u0030</string>
+    <string name="one">\u0031</string>
+    <string name="two">\u0032</string>
+    <string name="three">\u0033</string>
+    <string name="four">\u0034</string>
+    <string name="five">\u0035</string>
+    <string name="six">\u0036</string>
+    <string name="seven">\u0037</string>
+    <string name="eight">\u0038</string>
+    <string name="nine">\u0039</string>
+
 
 </resources>
