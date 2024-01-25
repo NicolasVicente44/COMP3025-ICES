@@ -160,37 +160,37 @@
             android:id="@+id/fourButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/four"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="4"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="4"
+            android:text="@string/four"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/fiveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/five"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="5"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="5"
+            android:text="@string/five"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/sixButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/six"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="6"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="6"
+            android:text="@string/six"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/subtractionButton"
@@ -218,37 +218,37 @@
             android:id="@+id/oneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/one"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="1"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="1"
+            android:text="@string/one"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/twoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/two"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="2"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="2"
+            android:text="@string/two"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/threeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/three"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="3"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="3"
+            android:text="@string/three"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/additionButton"
@@ -289,25 +289,25 @@
             android:id="@+id/zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="@string/zero"
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="0"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="0"
+            android:text="@string/zero"
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/decimalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/mx_10"
-            android:text="."
-            android:textSize="@dimen/buttonIconSize"
-            android:tag="decimal"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
             android:fontFamily="@font/fa_solid_900"
-            />
+            android:tag="decimal"
+            android:text="."
+            android:textSize="@dimen/buttonIconSize" />
 
         <Button
             android:id="@+id/equalsButton"
