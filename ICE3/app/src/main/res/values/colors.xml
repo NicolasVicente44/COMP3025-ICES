@@ -6,4 +6,6 @@
     <color name="functionButtonColor">#494949</color>
     <color name="numberButtonBackgroundColor">#959595</color>
     <color name="operatorButtonsTextColour">#000000</color>
+    <color name="resultTextColour">#FFFFFF</color>
+    <color name="numberAndUtilityButtonTextColour">#FFFFFF</color>
 </resources>

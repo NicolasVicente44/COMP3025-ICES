@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#202020"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -26,6 +27,7 @@
             android:paddingHorizontal="@dimen/px_10"
             android:text="0"
             android:textAlignment="viewEnd"
+            android:textColor="#FFFFFF"
             android:textSize="@dimen/ResultTextViewFontSize" />
 
     </LinearLayout>
@@ -35,12 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/thirdRow"
         app:layout_constraintBottom_toTopOf="@id/thirdRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstRow"
-        app:layout_constraintBottom_toBottomOf="@id/thirdRow"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/firstRow">
 
         <Button
             android:id="@+id/clearButton"
@@ -53,6 +54,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="clear"
             android:text="@string/clear"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -66,6 +68,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="percent"
             android:text="@string/percent"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -79,6 +82,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="backspace"
             android:text="@string/backspace"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -102,11 +106,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/fourthRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondRow"
-        app:layout_constraintBottom_toTopOf="@id/fourthRow"
-       >
+        app:layout_constraintTop_toBottomOf="@+id/secondRow">
 
         <Button
             android:id="@+id/sevenButton"
@@ -119,6 +122,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="7"
             android:text="@string/seven"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -132,6 +136,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="8"
             android:text="@string/eight"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -145,6 +150,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="9"
             android:text="@string/nine"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -168,11 +174,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fifthRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thirdRow"
-        app:layout_constraintBottom_toTopOf="@+id/fifthRow"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/thirdRow">
 
         <Button
             android:id="@+id/fourButton"
@@ -185,6 +190,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="4"
             android:text="@string/four"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -198,6 +204,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="5"
             android:text="@string/five"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -211,6 +218,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="6"
             android:text="@string/six"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -234,10 +242,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/sixthRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fourthRow"
-        app:layout_constraintBottom_toTopOf="@id/sixthRow">
+        app:layout_constraintTop_toBottomOf="@+id/fourthRow">
 
         <Button
             android:id="@+id/oneButton"
@@ -250,6 +258,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="1"
             android:text="@string/one"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -263,6 +272,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="2"
             android:text="@string/two"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -276,6 +286,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="3"
             android:text="@string/three"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -315,6 +326,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="+-"
             android:text="@string/plus_minus"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -328,6 +340,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="0"
             android:text="@string/zero"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
@@ -341,6 +354,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="decimal"
             android:text="."
+            android:textColor="@color/numberAndUtilityButtonTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
         <Button
