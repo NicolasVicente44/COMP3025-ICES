@@ -5,4 +5,5 @@
     <color name="operatorButtonColor">#E8B622</color>
     <color name="functionButtonColor">#494949</color>
     <color name="numberButtonBackgroundColor">#959595</color>
+    <color name="operatorButtonsTextColour">#000000</color>
 </resources>

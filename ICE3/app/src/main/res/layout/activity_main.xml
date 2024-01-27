@@ -92,6 +92,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="divide"
             android:text="@string/divide"
+            android:textColor="@color/operatorButtonsTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
@@ -157,6 +158,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="multiply"
             android:text="@string/multiply"
+            android:textColor="@color/operatorButtonsTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
@@ -222,6 +224,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="subtract"
             android:text="@string/subtract"
+            android:textColor="@color/operatorButtonsTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
@@ -286,6 +289,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="add"
             android:text="@string/add"
+            android:textColor="@color/operatorButtonsTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
@@ -350,6 +354,7 @@
             android:padding="@dimen/buttonPadding"
             android:tag="equality"
             android:text="@string/equals"
+            android:textColor="@color/operatorButtonsTextColour"
             android:textSize="@dimen/buttonIconSize" />
 
     </LinearLayout>
