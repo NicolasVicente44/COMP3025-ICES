@@ -17,24 +17,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //call onclick listeners function
         initializeOnClickListeners()
-
     }
 
     private fun initializeOnClickListeners() {
 
-
-        //operator buttons onclick listeners
-        binding.clearButton.setOnClickListener { view -> processOperatorButtons(view) }
-        binding.percentageButton.setOnClickListener { view -> processOperatorButtons(view) }
-        binding.backspaceButton.setOnClickListener { view -> processNumberButtons(view) }
-        binding.plusMinusButton.setOnClickListener { view -> processNumberButtons(view) }
         //function/utility buttons
-        binding.additionButton.setOnClickListener { view -> processNumberButtons(view) }
-        binding.subtractionButton.setOnClickListener { view -> processNumberButtons(view) }
-        binding.divisionButton.setOnClickListener { view -> processNumberButtons(view) }
-        binding.multiplyButton.setOnClickListener { view -> processNumberButtons(view) }
-        binding.equalsButton.setOnClickListener { view -> processNumberButtons(view) }
+        binding.clearButton.setOnClickListener { view -> processExtraButtons(view) }
+        binding.percentageButton.setOnClickListener { view -> processExtraButtons(view) }
+        binding.backspaceButton.setOnClickListener { view -> processExtraButtons(view) }
+        binding.plusMinusButton.setOnClickListener { view -> processExtraButtons(view) }
+        //operator buttons onclick listeners
+        binding.additionButton.setOnClickListener { view -> processOperatorButtons(view) }
+        binding.subtractionButton.setOnClickListener { view -> processOperatorButtons(view) }
+        binding.divisionButton.setOnClickListener { view -> processOperatorButtons(view) }
+        binding.multiplyButton.setOnClickListener { view -> processOperatorButtons(view) }
+        binding.equalsButton.setOnClickListener { view -> processOperatorButtons(view) }
         //number buttons onclick listeners
         binding.zero.setOnClickListener { view -> processNumberButtons(view) }
         binding.oneButton.setOnClickListener { view -> processNumberButtons(view) }
@@ -54,14 +53,37 @@ class MainActivity : AppCompatActivity() {
 
     private fun processOperatorButtons(view: View)
     {
-        Log.i("operators", view.tag.toString())
+        Log.i("operator buttons", view.tag.toString())
         resultLabelValue += view.tag.toString()
         binding.resultTextView.text = resultLabelValue
     }
 
     private fun processExtraButtons(view: View)
     {
+        when (view.tag.toString()) {
+            "clear" -> {
+                resultLabelValue = ""
+            }
+            "backspace" -> {
+                if (resultLabelValue.isNotEmpty()) {
+                    resultLabelValue = resultLabelValue.substring(0, resultLabelValue.length - 1)
+                }
+            }
+            "+-" -> {
+                resultLabelValue = if (resultLabelValue.startsWith("-")) {
+                    resultLabelValue.substring(1)
+                } else {
+                    "-$resultLabelValue"
+                }
+            }
+        }
 
+
+
+
+
+        Log.i("extra buttons", view.tag.toString())
+        binding.resultTextView.text = resultLabelValue
     }
 
     private fun processNumberButtons(view: View)
@@ -77,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             resultLabelValue += view.tag.toString()
         }
 
-        Log.i("numbers", view.tag.toString())
+        Log.i("number buttons", view.tag.toString())
       binding.resultTextView.text = resultLabelValue
     }
 }
