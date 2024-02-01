@@ -4,11 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "ca.georgiancollege.comp3025_w24_ice4"
+    namespace = "ca.georgiancollege.comp3025_w24_week_4"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
-        applicationId = "ca.georgiancollege.comp3025_w24_ice4"
+        applicationId = "ca.georgiancollege.comp3025_w24_week_4"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

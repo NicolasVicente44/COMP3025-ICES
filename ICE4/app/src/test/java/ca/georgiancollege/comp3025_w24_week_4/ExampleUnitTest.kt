@@ -1,4 +1,4 @@
-package ca.georgiancollege.comp3025_w24_ice4
+package ca.georgiancollege.comp3025_w24_week_4
 
 import org.junit.Test
 
