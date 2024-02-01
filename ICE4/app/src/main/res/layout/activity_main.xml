@@ -4,15 +4,374 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#202020"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/firstRow"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:backgroundTint="#FFFFFF"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3">
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingHorizontal="@dimen/px_10"
+            android:text="0"
+            android:textAlignment="viewEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/ResultTextViewFontSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/thirdRow"
+        app:layout_constraintBottom_toTopOf="@id/thirdRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstRow">
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="clear"
+            android:text="@string/clear"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/percentageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="percent"
+            android:text="@string/percent"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/backspaceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="backspace"
+            android:text="@string/backspace"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/divisionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="divide"
+            android:text="@string/divide"
+            android:textColor="@color/operatorButtonsTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thirdRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/fourthRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondRow">
+
+        <Button
+            android:id="@+id/sevenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="7"
+            android:text="@string/seven"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/eightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="8"
+            android:text="@string/eight"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/nineButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="9"
+            android:text="@string/nine"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/multiplyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="multiply"
+            android:text="@string/multiply"
+            android:textColor="@color/operatorButtonsTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fourthRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fifthRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdRow">
+
+        <Button
+            android:id="@+id/fourButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="4"
+            android:text="@string/four"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/fiveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="5"
+            android:text="@string/five"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/sixButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="6"
+            android:text="@string/six"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/subtractionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="subtract"
+            android:text="@string/subtract"
+            android:textColor="@color/operatorButtonsTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fifthRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/sixthRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourthRow">
+
+        <Button
+            android:id="@+id/oneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="1"
+            android:text="@string/one"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/twoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="2"
+            android:text="@string/two"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/threeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="3"
+            android:text="@string/three"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/additionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="add"
+            android:text="@string/add"
+            android:textColor="@color/operatorButtonsTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sixthRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fifthRow">
+
+        <Button
+            android:id="@+id/plusMinusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="+-"
+            android:text="@string/plus_minus"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/numberButtonBackgroundColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="0"
+            android:text="@string/zero"
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/decimalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/functionButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="decimal"
+            android:text="."
+            android:textColor="@color/numberAndUtilityButtonTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+        <Button
+            android:id="@+id/equalsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/mx_10"
+            android:layout_weight="1"
+            android:backgroundTint="@color/operatorButtonColor"
+            android:fontFamily="@font/fa_solid_900"
+            android:padding="@dimen/buttonPadding"
+            android:tag="equality"
+            android:text="@string/equals"
+            android:textColor="@color/operatorButtonsTextColour"
+            android:textSize="@dimen/buttonIconSize" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

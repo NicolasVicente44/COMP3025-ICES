@@ -1,4 +1,4 @@
-package ca.georgiancollege.comp3025_w24_ice4
+package ca.georgiancollege.comp3025_w24_week_4
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ca.georgiancollege.comp3025_w24_ice4", appContext.packageName)
+        assertEquals("ca.georgiancollege.comp3025_w24_week_3", appContext.packageName)
     }
 }
