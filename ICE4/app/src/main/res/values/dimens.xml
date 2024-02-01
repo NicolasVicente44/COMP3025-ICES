@@ -5,4 +5,5 @@
     <dimen name="mx_10">10dp</dimen>
     <dimen name="buttonIconSize">20dp</dimen>
     <dimen name="buttonPadding">15sp</dimen>
+    <dimen name="p_0">0dp</dimen>
 </resources>
