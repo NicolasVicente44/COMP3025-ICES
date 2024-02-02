@@ -86,6 +86,8 @@ class MainActivity : AppCompatActivity() {
         binding.resultTextView.text = resultLabelValue
     }
 
+
+
     private fun processNumberButtons(view: View)
     {
         if (view.tag.toString() === ".")
@@ -93,6 +95,8 @@ class MainActivity : AppCompatActivity() {
           if(!resultLabelValue.contains("."))
           {
               resultLabelValue += view.tag.toString()
+          } else {
+              resultLabelValue += ""
           }
 
         } else {
