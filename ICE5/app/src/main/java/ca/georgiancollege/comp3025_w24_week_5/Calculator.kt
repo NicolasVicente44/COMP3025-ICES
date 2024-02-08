@@ -70,7 +70,7 @@ class Calculator(binding: ActivityMainBinding)
                 }
             }
             "+-" -> {
-                if(this.m_resultLabelValue.isNotEmpty())
+                if(this.m_resultLabelValue.isNotEmpty() && this.m_resultLabelValue != "0")
                 {
                     if(this.m_resultLabelValue.contains("-"))
                     {
