@@ -7,7 +7,7 @@ class Calculator(binding: ActivityMainBinding)
 {
     private var m_resultLabelValue: String = ""
     private var m_binding: ActivityMainBinding
-    init 
+    init
     {
         this.m_binding = binding
         this.m_resultLabelValue = ""
@@ -91,33 +91,34 @@ class Calculator(binding: ActivityMainBinding)
 
 
 
-    private fun processNumberButtons(view: View)
-    {
-        when (view.tag.toString())
-        {
+    private fun processNumberButtons(view: View) {
+        when (view.tag.toString()) {
             "." -> {
-                if(!this.m_resultLabelValue.contains("."))
-                {
-                    if (this.m_resultLabelValue.isEmpty())
-                    {
+                if (!this.m_resultLabelValue.contains(".")) {
+                    if (this.m_resultLabelValue.isEmpty()) {
                         this.m_resultLabelValue = "0."
                     } else {
                         this.m_resultLabelValue += view.tag.toString()
                     }
-
                 } else {
                     this.m_resultLabelValue += ""
                 }
             }
-
+            "0" -> {
+                if (this.m_resultLabelValue != "0" && !this.m_resultLabelValue.startsWith("0.")) {
+                    this.m_resultLabelValue += view.tag.toString()
+                }
+            }
             else -> {
+                if (this.m_resultLabelValue == "0") {
+                    this.m_resultLabelValue = ""
+                }
                 this.m_resultLabelValue += view.tag.toString()
-
             }
         }
-
         Log.i("number buttons", view.tag.toString())
         this.m_binding.resultTextView.text = this.m_resultLabelValue
     }
+
 
 }
