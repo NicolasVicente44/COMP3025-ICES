@@ -56,40 +56,64 @@ class Calculator(binding: ActivityMainBinding)
         when (view.tag.toString()) {
             "clear" -> {
                 this.m_resultLabelValue = ""
+                this.m_binding.resultTextView.text = "0"
             }
             "backspace" -> {
-                if (this.m_resultLabelValue.isNotEmpty()) {
-                    this.m_resultLabelValue = this.m_resultLabelValue.substring(0, this.m_resultLabelValue.length - 1)
+
+                this.m_resultLabelValue = this.m_resultLabelValue.dropLast(1)
+                this.m_binding.resultTextView.text = this.m_resultLabelValue
+
+                if (this.m_resultLabelValue.isEmpty() || this.m_resultLabelValue == "-")
+                {
+                    this.m_resultLabelValue = ""
+                    this.m_binding.resultTextView.text = "0"
                 }
             }
             "+-" -> {
-                this.m_resultLabelValue = if (this.m_resultLabelValue.startsWith("-")) {
-                    this.m_resultLabelValue.substring(1)
-                } else {
-                    "-$this.m_resultLabelValue"
+                if(this.m_resultLabelValue.isNotEmpty())
+                {
+                    if(this.m_resultLabelValue.contains("-"))
+                    {
+                      this.m_resultLabelValue = this.m_resultLabelValue.removePrefix("-")
+                    }
+                    else
+                    {
+                        this.m_resultLabelValue = "-" + this.m_resultLabelValue
+                    }
+
+                    this.m_binding.resultTextView.text = this.m_resultLabelValue
                 }
             }
         }
 
         Log.i("extra buttons", view.tag.toString())
-        this.m_binding.resultTextView.text = this.m_resultLabelValue
     }
 
 
 
     private fun processNumberButtons(view: View)
     {
-        if (view.tag.toString() == ".")
+        when (view.tag.toString())
         {
-            if(!this.m_resultLabelValue.contains("."))
-            {
-                this.m_resultLabelValue += view.tag.toString()
-            } else {
-                this.m_resultLabelValue += ""
+            "." -> {
+                if(!this.m_resultLabelValue.contains("."))
+                {
+                    if (this.m_resultLabelValue.isEmpty())
+                    {
+                        this.m_resultLabelValue = "0."
+                    } else {
+                        this.m_resultLabelValue += view.tag.toString()
+                    }
+
+                } else {
+                    this.m_resultLabelValue += ""
+                }
             }
 
-        } else {
-            this.m_resultLabelValue += view.tag.toString()
+            else -> {
+                this.m_resultLabelValue += view.tag.toString()
+
+            }
         }
 
         Log.i("number buttons", view.tag.toString())
