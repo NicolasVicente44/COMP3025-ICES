@@ -77,7 +77,7 @@
 
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/divide"
+            android:tag="÷"
             android:text="@string/divide"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -125,7 +125,7 @@
             style="@style/CalculatorButtons"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/multiply"
+            android:tag="×"
             android:text="@string/multiply"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -173,7 +173,7 @@
             style="@style/CalculatorButtons"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/subtract"
+            android:tag="-"
             android:text="@string/subtract"
             android:textColor="@color/operatorButtonsTextColour" />
 
