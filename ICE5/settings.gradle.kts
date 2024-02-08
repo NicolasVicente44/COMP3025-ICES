@@ -13,5 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "COMP3025-W24-ICE5"
+rootProject.name = "COMP3025-W24-Week-5"
 include(":app")
+ 

@@ -17,11 +17,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintVertical_bias="0">
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/resultTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:paddingHorizontal="@dimen/px_10"
@@ -46,6 +46,8 @@
         <Button
             android:id="@+id/clearButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:tag="clear"
@@ -55,15 +57,19 @@
         <Button
             android:id="@+id/percentageButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
-            android:tag="%"
+            android:tag="percent"
             android:text="@string/percent"
             android:textColor="@color/numberAndUtilityButtonTextColour" />
 
         <Button
             android:id="@+id/backspaceButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:backgroundTint="@color/functionButtonColor"
@@ -74,10 +80,12 @@
         <Button
             android:id="@+id/divisionButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/divide"
+            android:tag="divide"
             android:text="@string/divide"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -96,6 +104,8 @@
         <Button
             android:id="@+id/sevenButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="7"
@@ -105,6 +115,8 @@
         <Button
             android:id="@+id/eightButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="8"
@@ -114,6 +126,8 @@
         <Button
             android:id="@+id/nineButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="9"
@@ -123,9 +137,11 @@
         <Button
             android:id="@+id/multiplyButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/multiply"
+            android:tag="multiply"
             android:text="@string/multiply"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -144,6 +160,8 @@
         <Button
             android:id="@+id/fourButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="4"
@@ -153,6 +171,8 @@
         <Button
             android:id="@+id/fiveButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="5"
@@ -162,6 +182,8 @@
         <Button
             android:id="@+id/sixButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="6"
@@ -171,9 +193,11 @@
         <Button
             android:id="@+id/subtractionButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="@string/subtract"
+            android:tag="subtract"
             android:text="@string/subtract"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -192,6 +216,8 @@
         <Button
             android:id="@+id/oneButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="1"
@@ -201,6 +227,8 @@
         <Button
             android:id="@+id/twoButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="2"
@@ -210,6 +238,8 @@
         <Button
             android:id="@+id/threeButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="3"
@@ -219,9 +249,11 @@
         <Button
             android:id="@+id/additionButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="+"
+            android:tag="add"
             android:text="@string/add"
             android:textColor="@color/operatorButtonsTextColour" />
 
@@ -240,6 +272,8 @@
         <Button
             android:id="@+id/plusMinusButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:backgroundTint="@color/functionButtonColor"
@@ -250,6 +284,8 @@
         <Button
             android:id="@+id/zero"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_num_btn"
             android:tag="0"
@@ -259,19 +295,23 @@
         <Button
             android:id="@+id/decimalButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_btn"
             android:backgroundTint="@color/functionButtonColor"
-            android:tag="."
+            android:tag="decimal"
             android:text="."
             android:textColor="@color/numberAndUtilityButtonTextColour" />
 
         <Button
             android:id="@+id/equalsButton"
             style="@style/CalculatorButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rounded_op_btn"
-            android:tag="="
+            android:tag="equality"
             android:text="@string/equals"
             android:textColor="@color/operatorButtonsTextColour" />
 
