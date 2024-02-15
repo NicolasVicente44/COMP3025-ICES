@@ -16,10 +16,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        for (contact in deserializeJSON()!!) {
+        for (contact in DataManager.instance.deserializeJSON(this)!!) {
             println(contact)
         }
     }
+
 
 
 
