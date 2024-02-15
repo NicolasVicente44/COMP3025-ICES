@@ -25,4 +25,7 @@ data class ContactModel(
         return """Full Name: $FullName, Contact Number: $ContactNumber, Email Address: $EmailAddress """
     }
 
+
+
+
 }
