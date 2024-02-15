@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "COMP3025-W24-Week-6"
 include(":app")
- 
