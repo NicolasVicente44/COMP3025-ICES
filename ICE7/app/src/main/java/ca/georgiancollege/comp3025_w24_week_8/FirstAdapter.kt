@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ca.georgiancollege.comp3025_w24_week_8.databinding.TextRowItemBinding
 
-class FirstAdapter(private val dataSet: Array<TVShow>) : RecyclerView.Adapter<FirstAdapter.ViewHolder>() {
+class FirstAdapter(private val dataSet: Array<TVShow>) :
+    RecyclerView.Adapter<FirstAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: TextRowItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -16,11 +17,10 @@ class FirstAdapter(private val dataSet: Array<TVShow>) : RecyclerView.Adapter<Fi
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        // Use view binding to set the textview
+        // Use view binding to set the text
         viewHolder.binding.title.text = dataSet[position].title
-        viewHolder.binding.subTitle.text = dataSet[position].subTitle
+        viewHolder.binding.subTitle.text = dataSet[position].studio
     }
 
     override fun getItemCount() = dataSet.size
-
 }

@@ -1,8 +1,9 @@
-import android.os.Bundle
+package ca.georgiancollege.comp3025_w24_week_8
+
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.georgiancollege.comp3025_w24_week_8.FirstAdapter
-import ca.georgiancollege.comp3025_w24_week_8.TVShow
 import ca.georgiancollege.comp3025_w24_week_8.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         val firstAdapter = FirstAdapter(favouriteTVShows)
-
         // Use view binding to replace findViewById or synthetic properties
         binding.FirstRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
