@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = firstAdapter
             }
         } else {
-            Log.i("the list of movies was empty, or there was an error loading them")
+            Log.v("MyTag", "the list of movies was empty, or there was an error loading them")
         }
     }
 }
