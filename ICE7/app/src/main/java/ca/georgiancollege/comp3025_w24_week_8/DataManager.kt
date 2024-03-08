@@ -31,9 +31,9 @@ class DataManager private constructor(){
         val listType = Types.newParameterizedType(List::class.java, MovieModel::class.java)
         val adapter: JsonAdapter<List<MovieModel>> = moshi.adapter(listType)
 
-        val contactListRawString = getTextFromResource(context, R.raw.movies)
-        val contactList: List<MovieModel>? = adapter.fromJson(contactListRawString)
-        return contactList
+        val movieListRawString = getTextFromResource(context, R.raw.movies)
+        val movieList: List<MovieModel>? = adapter.fromJson(movieListRawString)
+        return movieList
     }
 
     companion object
