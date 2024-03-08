@@ -2,6 +2,7 @@ package ca.georgiancollege.comp3025_w24_week_8
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.georgiancollege.comp3025_w24_week_8.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
@@ -23,8 +24,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = firstAdapter
             }
         } else {
-            // Handle the case where the list is null
-            // (e.g., display an error message or provide default data)
+            Log.i("the list of movies was empty, or there was an error loading them")
         }
     }
 }
