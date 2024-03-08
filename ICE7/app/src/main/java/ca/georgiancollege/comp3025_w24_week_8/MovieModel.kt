@@ -1,7 +1,9 @@
 package ca.georgiancollege.comp3025_w24_week_8
 
+import com.squareup.moshi.JsonClass
 
-data class TVShow(
+@JsonClass(generateAdapter = true)
+data class MovieModel(
     val title: String,
     val studio: String
 )

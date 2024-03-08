@@ -3,32 +3,28 @@ package ca.georgiancollege.comp3025_w24_week_8
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import ca.georgiancollege.comp3025_w24_week_8.FirstAdapter
 import ca.georgiancollege.comp3025_w24_week_8.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
-    // Declare an instance of the binding class
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Inflate the layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val favouriteTVShows = arrayOf(
-            TVShow("House of the Dragon", "HBO"),
-            TVShow("Lord of the Rings", "Prime Video"),
-            TVShow("Andor", "Disney"),
-            TVShow("Severance", "AppleTv"),
-            TVShow("Star Trek: Strange New Worlds", "Paramount+")
-        )
+        // Get the list of movies from the DataManager
+        val favouriteMovies = DataManager.instance.deserializeJSON(this)
 
-        val firstAdapter = FirstAdapter(favouriteTVShows)
-        // Use view binding to replace findViewById or synthetic properties
-        binding.FirstRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = firstAdapter
+        // Check if the list is not null
+        if (favouriteMovies != null) {
+            val firstAdapter = FirstAdapter(favouriteMovies.toTypedArray())
+            binding.FirstRecyclerView.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = firstAdapter
+            }
+        } else {
+            // Handle the case where the list is null
+            // (e.g., display an error message or provide default data)
         }
     }
 }
