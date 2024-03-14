@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/cell_margin"
-            android:text="@string/studio"
+            android:text="@string/studio_text"
             android:textColor="@color/subTitle_blue" />
 
         <View
