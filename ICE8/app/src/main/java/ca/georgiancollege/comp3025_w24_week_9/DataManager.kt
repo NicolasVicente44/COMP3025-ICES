@@ -1,44 +1,59 @@
 package ca.georgiancollege.comp3025_w24_week_9
 
-import android.content.Context
-import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.Callback
 
 /**
- * the data manager class is a singleton
- */
-class DataManager private constructor(){
-
-    fun  getTextFromResource(context: Context, resourceId: Int): String {
-        return context.resources.openRawResource(resourceId)
-            .bufferedReader()
-            .use { it.readText() }
-    }
-
-
-    fun getTextFromAsset(context: Context, fileName: String): String {
-        return context.resources.assets.open(fileName)
-            .bufferedReader()
-            .use { it.readText() }
-    }
-
-
-    fun deserializeJSON(context: Context): List<MovieModel>? {
-        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-        val listType = Types.newParameterizedType(List::class.java, MovieModel::class.java)
-        val adapter: JsonAdapter<List<MovieModel>> = moshi.adapter(listType)
-
-        val movieListRawString = getTextFromResource(context, R.raw.movies)
-        val movieList: List<MovieModel>? = adapter.fromJson(movieListRawString)
-        return movieList
-    }
-
+ * DataManager Singleton
+ *
+ * */
+class DataManager private constructor()
+{
     companion object
     {
+        private const val BASE_URL = "https://comp2140.com/api/"
+        //moshi converts the json to usable data
+        private val moshi: Moshi by lazy {
+            Moshi.Builder()
+                .addLast(KotlinJsonAdapterFactory())
+                .build()
+        }
+
+        //retrofit enables requests and responses with apis
+        private val retrofit: Retrofit by lazy {
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .build()
+        }
+
         val instance: DataManager by lazy { DataManager() }
     }
 
+    private val service: MovieAPIService by lazy {
+        retrofit.create(MovieAPIService::class.java)
+    }
+
+    fun getAllMovies(callback: Callback<ApiResponse<List<Movie>>>) {
+        service.getAllMovies().enqueue(callback)
+    }
+
+    fun getMovieById(id: String?, callback: Callback<ApiResponse<Movie>>) {
+        service.getMovieById(id).enqueue(callback)
+    }
+
+    fun addMovie(movie: Movie, callback: Callback<ApiResponse<Movie>>) {
+        service.addMovie(movie).enqueue(callback)
+    }
+
+    fun updateMovie(id: String?, movie: Movie, callback: Callback<ApiResponse<Movie>>) {
+        service.updateMovie(id, movie).enqueue(callback)
+    }
+
+    fun deleteMovie(id: String?, callback: Callback<ApiResponse<String>>) {
+        service.deleteMovie(id).enqueue(callback)
+    }
 }
