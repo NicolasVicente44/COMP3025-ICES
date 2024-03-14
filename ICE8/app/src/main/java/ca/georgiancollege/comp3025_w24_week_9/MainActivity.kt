@@ -13,12 +13,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // get the list of movies from the data manager clss
+        // get the list of movies from the data manager clss and read json
         val favouriteMovies = DataManager.instance.deserializeJSON(this)
 
         // validate that the list contains items
         if (favouriteMovies != null) {
-            val firstAdapter = FirstAdapter(favouriteMovies.toTypedArray())
+            val firstAdapter = FirstAdapter(favouriteMovies)
             binding.FirstRecyclerView.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = firstAdapter
