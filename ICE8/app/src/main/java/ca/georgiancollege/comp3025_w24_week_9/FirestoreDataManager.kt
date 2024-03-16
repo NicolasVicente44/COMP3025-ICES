@@ -24,4 +24,39 @@ class FirestoreDataManager {
             .addOnSuccessListener { onComplete(true) }
             .addOnFailureListener { onComplete(false) }
     }
+
+    //to do, get movie by id
+
+    fun getMovieById(movieId: String, onComplete: (FirebaseMovie?) -> Unit) {
+        collectionRef.document(movieId).get()
+            .addOnSuccessListener { document ->
+                val movie = document.toObject<FirebaseMovie>()
+                onComplete(movie)
+            }
+            .addOnFailureListener {
+                onComplete(null)
+            }
+    }
+
+    // update movie
+
+    fun updateMovie(movieId: String, movie: FirebaseMovie, onComplete: (Boolean) -> Unit) {
+        collectionRef.document(movieId).set(movie)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+    //to do, delete movie
+
+    fun deleteMovie(movieId: String, onComplete: (Boolean) -> Unit) {
+        collectionRef.document(movieId).delete()
+            .addOnSuccessListener {
+                onComplete(true)
+            }
+            .addOnFailureListener {
+                onComplete(false)
+            }
+    }
+
+
 }
