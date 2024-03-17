@@ -21,16 +21,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize RecyclerView
+        // initialize RecyclerView
         recyclerView = binding.FirstRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = FirstAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        // Initialize Firebase
+        // initialize Firebase
         FirebaseApp.initializeApp(this)
 
-        // Fetch movies from Firestore
+        // get movies from Firestore
         fetchMovies()
     }
 
