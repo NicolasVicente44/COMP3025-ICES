@@ -5,10 +5,12 @@
     android:layout_marginLeft="@dimen/margin_medium"
     android:layout_marginRight="@dimen/margin_medium"
     android:gravity="center_vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -16,7 +18,9 @@
             android:layout_marginStart="@dimen/cell_margin"
             android:text="@string/title_text"
             android:textSize="@dimen/cell_text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/studio"

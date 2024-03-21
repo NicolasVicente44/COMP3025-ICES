@@ -1,91 +1,55 @@
+
 package ca.georgiancollege.comp3025_w24_week_10
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import ca.georgiancollege.comp3025_w24_week_10.databinding.ActivityLoginBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import android.content.Context
-import android.content.SharedPreferences
-import android.view.Gravity
-import android.view.View
-import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize SharedPreferences
-        sharedPreferences = getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         binding.registerButton.setOnClickListener {
-            // Navigate to RegisterActivity
+            // Navigate to ca.georgiancollege.comp3025_w24_week_10.RegisterActivity
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-
         binding.loginButton.setOnClickListener {
-            val username = binding.usernameEditText.text.toString()
+            val email = binding.usernameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            loginUser(username, password)
+            loginUser(email, password)
         }
-
-
     }
 
 
-    private fun loginUser(username: String, password: String) {
-        val user = User(username = username, password = password)
-        DataManager.instance(this).loginUser(user, object : Callback<ApiResponse<User>> {
-            override fun onResponse(
-                call: Call<ApiResponse<User>>,
-                response: Response<ApiResponse<User>>
-            ) {
-                if (response.isSuccessful && response.body()?.success == true) {
-                    println("User Logged In Successfully")
-                    val token = response.body()?.token
-
-                    token?.let {
-                        val editor = sharedPreferences.edit()
-                        editor.putString("auth_token", it)
-                        editor.apply()
-
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
-                    }
+    private fun loginUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+                    Toast.makeText(this, "Authentication succeeded.", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    finish()
+                    Log.d("login", "User: ${user?.email} has been successfully logged in.") // log the user's email to confirm loggging in
                 } else {
-                    println("User Not Logged In")
-                    showLoginFailedSnackbar("Login failed: ${response.body()?.message}")
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable) {
-                println("Login Error")
-                showLoginFailedSnackbar("Login error: ${t.message}")
-            }
-        })
     }
 
-
-    private fun showLoginFailedSnackbar(message: String) {
-        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-        val view = snackbar.view
-        val params = view.layoutParams as FrameLayout.LayoutParams
-
-        params.gravity = Gravity.TOP
-        view.layoutParams = params
-        view.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
-
-        snackbar.show()
-    }
 }

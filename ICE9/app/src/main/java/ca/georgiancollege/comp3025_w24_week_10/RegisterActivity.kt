@@ -4,62 +4,50 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import ca.georgiancollege.comp3025_w24_week_10.databinding.ActivityRegisterBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
-class RegisterActivity : AppCompatActivity()
-{
+class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    private lateinit var auth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         binding.CancelButton.setOnClickListener {
             finish()
         }
 
-
         binding.RegisterButton.setOnClickListener {
-            val user = User(
-                username = binding.UsernameText.text.toString(),
-                emailAddress = binding.EmailEditText.text.toString(),
-                firstName = binding.FirstNameEditText.text.toString(),
-                lastName = binding.LastNameEditText.text.toString(),
-                password = binding.PasswordText.text.toString()
-            )
-            registerUser(user)
+            val email = binding.EmailEditText.text.toString()
+            val password = binding.PasswordText.text.toString()
+            registerUser(email, password)
         }
-
-
     }
 
-
-    private fun registerUser(user: User) {
-        DataManager.instance(this).registerUser(user, object : Callback<ApiResponse<User>>
-        {
-            override fun onResponse(call: Call<ApiResponse<User>>, response: Response<ApiResponse<User>>)
-            {
-                if (response.isSuccessful && response.body()?.success == true)
-                {
-                    Toast.makeText(this@RegisterActivity, "Registration successful", Toast.LENGTH_SHORT).show()
+    private fun registerUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Registration success, update UI with the signed-in user's information
+                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
                     println("User Registration Successful")
                     finish() // Finish the activity and go back to the login screen
                 } else {
+                    // If registration fails, display a message to the user.
+                    val exception = task.exception
+                    if (exception is FirebaseAuthUserCollisionException) {
+                        Toast.makeText(this, "Email address is already in use", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Registration failed: ${exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
                     println("User Registration Failed")
-                    Toast.makeText(this@RegisterActivity, "Registration failed: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable)
-            {
-                println("User Registration Error")
-                Toast.makeText(this@RegisterActivity, "Registration error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
-
-
 }

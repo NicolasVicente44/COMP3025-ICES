@@ -1,179 +1,115 @@
 package ca.georgiancollege.comp3025_w24_week_10
-import android.app.AlertDialog
+
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ca.georgiancollege.comp3025_w24_week_10.databinding.ActivityMainBinding
 import ca.georgiancollege.comp3025_w24_week_10.databinding.AddNewMovieItemBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseApp
-
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity()
-{
-    // Declare an instance of the binding class
+class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
-    private lateinit var addNewMovieBinding: AddNewMovieItemBinding
-    private lateinit var addMovieFAB: FloatingActionButton
+    private lateinit var adapter: FirestoreAdapter
     private val viewModel: MovieViewModel by viewModels()
-    private lateinit var firstAdapter: FirstAdapter
-    private lateinit var movieList: MutableList<Movie>
+    private val firestoreDataManager = FirestoreDataManager()
+    private lateinit var auth: FirebaseAuth
+    private val authListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+        val user = firebaseAuth.currentUser
+        if (user == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-
-
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this)
-
-
-
-
-
-
-
-
-
-
-
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Inflate the layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // initialize Firebase
         FirebaseApp.initializeApp(this)
+        auth = FirebaseAuth.getInstance()
 
-        val firestore = FirestoreDataManager()
-        firestore.getMovies { movies ->
-            for(movie in movies)
-            {
-                println(movie.title)
-            }
-        }
-
-        val newMovie = FirebaseMovie("MyTitle", "MyStudio")
-        firestore.addMovie(newMovie) { isSuccess ->
-            if(isSuccess)
-            {
-                println("Success!")
-            }
-        }
-
-        viewModel.movies.observe(this) { movies ->
-            movieList = movies.toMutableList()
-            firstAdapter = FirstAdapter(movies)
-
-            binding.FirstRecyclerView.apply {
-                layoutManager = LinearLayoutManager(this@MainActivity)
-                adapter = firstAdapter
-            }
-
-            // click on a row to update
-            firstAdapter.onMovieClick = {movie->
-                showUpdateMovieDialog(movie)
-            }
-
-            // Setup swipe to delete
-            val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
-            {
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean
-                {
-                    return false // not used
-                }
-
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)
-                {
-                    AlertDialog.Builder(this@MainActivity).apply {
-                        setTitle(R.string.delete_movie)
-                        setMessage(R.string.are_you_sure)
-                        setPositiveButton(R.string.ok) { dialog, _ ->
-                            dialog.dismiss()
-                            val position = viewHolder.adapterPosition
-                            val movieId = movieList[position].id
-                            viewModel.deleteMovie(movieId) // Trigger deletion in ViewModel
-                        }
-                        setNegativeButton(R.string.cancel) { dialog, _ ->
-                            dialog.dismiss()
-                            firstAdapter.notifyItemChanged(viewHolder.adapterPosition) // Reverts the swipe action visually
-                        }
-                        setCancelable(false)
-                    }.create().show()
-                }
-
-            }
-            val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
-            itemTouchHelper.attachToRecyclerView(binding.FirstRecyclerView)
-        }
-
-        // Get Movies for the first time
-        viewModel.getAllMovies()
-
-        // add the FAB
-        addMovieFAB = binding.addMovieFAB
-        addMovieFAB.setOnClickListener{ showAddMovieDialog() }
+        adapter = FirestoreAdapter(emptyList()) // Initially empty, data will be fetched later
+        binding.FirstRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.FirstRecyclerView.adapter = adapter
 
         binding.logoutButton.setOnClickListener { logoutUser() }
+
+        //initialize floating action button for creation of movie
+        binding.addMovieFAB.setOnClickListener { showAddMovieDialog() }
+
     }
 
-    private fun showAddMovieDialog()
-    {
-        val dialogTitle = getString(R.string.add_dialog_title)
-        val positiveButtonTitle = getString(R.string.add_movie)
-        val builder = AlertDialog.Builder(this)
-        addNewMovieBinding = AddNewMovieItemBinding.inflate(layoutInflater)
+    override fun onStart() {
+        super.onStart()
+        auth.addAuthStateListener(authListener)
+        fetchMovies()
+    }
 
-        builder.setTitle(dialogTitle)
-        builder.setView(addNewMovieBinding.root)
+    override fun onStop() {
+        super.onStop()
+        auth.removeAuthStateListener(authListener)
+    }
 
-        builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
-            dialog.dismiss()
-            val movieTitle = addNewMovieBinding.movieTitleEditText.text.toString()
-            val studioTitle = addNewMovieBinding.studioTitleEditText.text.toString()
-            val newMovie = Movie(title = movieTitle, studio = studioTitle)
 
-            viewModel.addMovie(newMovie)
+    private fun showAddMovieDialog() {
+        val dialogBinding = AddNewMovieItemBinding.inflate(layoutInflater)
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Add New Movie")
+            .setView(dialogBinding.root)
+            .setPositiveButton("Add") { _, _ ->
+                // Handle adding the movie
+                val title = dialogBinding.movieTitleEditText.text.toString()
+                val studio = dialogBinding.studioTitleEditText.text.toString()
+
+                // Create a new movie object with the entered information
+                val newMovie = FirebaseMovie(title, studio)
+
+                // Call the method to add the movie to Firestore
+                firestoreDataManager.addMovie(newMovie) { isSuccess ->
+                    if (isSuccess) {
+                        // Movie added successfully
+                        // You can show a message or perform any other action here
+                        Log.d(TAG, "Movie added successfully")
+                        fetchMovies() // Update the movie list
+                    } else {
+                        // Movie addition failed
+                        // You can show an error message or perform any other action here
+                        Log.e(TAG, "Failed to add movie")
+                    }
+                }
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
+    }
+
+    companion object {
+        private const val TAG = "MainActivity" // Use your desired tag for logging
+    }
+
+
+    private fun fetchMovies() {
+        firestoreDataManager.getMovies { movies ->
+            runOnUiThread {
+                adapter.updateMovies(movies) // Update the adapter with the new list of movies
+            }
         }
-        builder.create().show()
     }
 
-    private fun showUpdateMovieDialog(movie: Movie)
-    {
-        val dialogTitle = getString(R.string.update_dialog_title)
-        val positiveButtonTitle = getString(R.string.update_movie)
-        val builder = AlertDialog.Builder(this)
-        addNewMovieBinding = AddNewMovieItemBinding.inflate(layoutInflater)
-
-        builder.setTitle(dialogTitle)
-        builder.setView(addNewMovieBinding.root)
-
-        viewModel.getMovieById(movie.id)
-
-        viewModel.movie.observe(this, Observer { movieById ->
-            addNewMovieBinding.movieTitleEditText.setText(movieById!!.title)
-            addNewMovieBinding.studioTitleEditText.setText(movieById.studio)
-        })
-
-        builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
-            dialog.dismiss()
-            val movieTitle = addNewMovieBinding.movieTitleEditText.text.toString()
-            val studioTitle = addNewMovieBinding.studioTitleEditText.text.toString()
-            val updatedMovie = Movie(title = movieTitle, studio = studioTitle)
-
-            viewModel.updateMovie(movie.id, updatedMovie)
-        }
-        builder.create().show()
-    }
-
-    private fun logoutUser()
-    {
+    private fun logoutUser() {
         val sharedPreferences = getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             remove("auth_token")
@@ -182,5 +118,6 @@ class MainActivity : AppCompatActivity()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
-
 }
+
+
