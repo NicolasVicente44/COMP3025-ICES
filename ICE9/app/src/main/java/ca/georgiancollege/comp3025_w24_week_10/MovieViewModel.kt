@@ -18,7 +18,7 @@ class MovieViewModel : ViewModel()
     val movie: LiveData<Movie> = individualMovie
 
     // reference to the DataManager Singleton
-    private val dataManager = DataManager.instance
+    private val dataManager = DataManager.instance()
 
     fun getAllMovies()
     {

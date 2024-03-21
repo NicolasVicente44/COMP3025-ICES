@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ca.georgiancollege.comp3025_w24_week_10.databinding.TextRowItemBinding
 
-class FirstAdapter(private var dataSet: List<FirebaseMovie>) :
+class FirstAdapter(private var dataSet: List<Movie>) :
     RecyclerView.Adapter<FirstAdapter.ViewHolder>() {
-    var onMovieClick: ((FirebaseMovie)-> Unit)? = null
+    var onMovieClick: ((Movie) -> Unit)? = null
 
     class ViewHolder(val binding: TextRowItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Inflate the layout with view binding
-        val binding = TextRowItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding =
+            TextRowItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
@@ -30,7 +31,7 @@ class FirstAdapter(private var dataSet: List<FirebaseMovie>) :
     override fun getItemCount() = dataSet.size
 
     // Function to update the dataset
-    fun updateMovies(newMovies: List<FirebaseMovie>) {
+    fun updateMovies(newMovies: List<Movie>) {
         dataSet = newMovies
         notifyDataSetChanged()
     }
