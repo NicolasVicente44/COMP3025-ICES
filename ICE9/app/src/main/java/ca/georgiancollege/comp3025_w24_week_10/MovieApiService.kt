@@ -22,4 +22,12 @@ interface MovieAPIService {
     // Delete a movie by ID
     @DELETE("{id}")
     fun deleteMovie(@Path("id") id: String?): Call<ApiResponse<String>>
+
+
+    //register and log a user in
+    @POST("register")
+    fun registerUser(@Body newUser: User): Call<ApiResponse<User>>
+    // Login a User
+    @POST("login")
+    fun loginUser(@Body credentials: User): Call<ApiResponse<User>>
 }
