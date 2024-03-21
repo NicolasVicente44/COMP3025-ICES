@@ -29,10 +29,4 @@ class FirstAdapter(private var dataSet: List<Movie>) :
     }
 
     override fun getItemCount() = dataSet.size
-
-    // Function to update the dataset
-    fun updateMovies(newMovies: List<Movie>) {
-        dataSet = newMovies
-        notifyDataSetChanged()
-    }
 }

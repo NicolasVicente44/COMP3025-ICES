@@ -25,7 +25,7 @@ class DataManager private constructor(private val context: Context) {
             .build()
     }
 
-    //interceptor
+    // Interceptor
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .readTimeout(30, TimeUnit.SECONDS)

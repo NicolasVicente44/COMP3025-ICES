@@ -8,9 +8,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity()
+{
     private lateinit var binding: ActivityRegisterBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -18,7 +20,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.CancelButton.setOnClickListener {
             finish()
         }
-
 
 
         binding.RegisterButton.setOnClickListener {
@@ -37,36 +38,25 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private fun registerUser(user: User) {
-        DataManager.instance(this).registerUser(user, object : Callback<ApiResponse<User>> {
-            override fun onResponse(
-                call: Call<ApiResponse<User>>,
-                response: Response<ApiResponse<User>>
-            ) {
-                if (response.isSuccessful && response.body()?.success == true) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Registration successful",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        DataManager.instance(this).registerUser(user, object : Callback<ApiResponse<User>>
+        {
+            override fun onResponse(call: Call<ApiResponse<User>>, response: Response<ApiResponse<User>>)
+            {
+                if (response.isSuccessful && response.body()?.success == true)
+                {
+                    Toast.makeText(this@RegisterActivity, "Registration successful", Toast.LENGTH_SHORT).show()
                     println("User Registration Successful")
                     finish() // Finish the activity and go back to the login screen
                 } else {
                     println("User Registration Failed")
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Registration failed: ${response.body()?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@RegisterActivity, "Registration failed: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable) {
+            override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable)
+            {
                 println("User Registration Error")
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Registration error: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@RegisterActivity, "Registration error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

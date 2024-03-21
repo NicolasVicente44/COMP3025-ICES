@@ -1,6 +1,5 @@
 package ca.georgiancollege.comp3025_w24_week_10
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,10 +29,9 @@ class LoginActivity : AppCompatActivity() {
 
         binding.registerButton.setOnClickListener {
             // Navigate to RegisterActivity
-            val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
-
 
 
         binding.loginButton.setOnClickListener {
@@ -46,38 +44,37 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-     private fun loginUser(username: String, password: String)
-          {
-             val user = User(username = username, password = password)
-             DataManager.instance(this).loginUser(user, object : Callback<ApiResponse<User>>
-            {
-               override fun onResponse(call: Call<ApiResponse<User>>, response: Response<ApiResponse<User>>)
-                  {
-                     if (response.isSuccessful && response.body()?.success == true)
-                     {
-                         println("User Logged In Successfully")
-                         val token = response.body()?.token
+    private fun loginUser(username: String, password: String) {
+        val user = User(username = username, password = password)
+        DataManager.instance(this).loginUser(user, object : Callback<ApiResponse<User>> {
+            override fun onResponse(
+                call: Call<ApiResponse<User>>,
+                response: Response<ApiResponse<User>>
+            ) {
+                if (response.isSuccessful && response.body()?.success == true) {
+                    println("User Logged In Successfully")
+                    val token = response.body()?.token
 
-                      token?.let {
-                          val editor = sharedPreferences.edit()
-                           editor.putString("auth_token", it)
-                            editor.apply()
-                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
-                      }
-                  } else {
-                       println("User Not Logged In")
-                      showLoginFailedSnackbar("Login failed: ${response.body()?.message}")
-                  }
-               }
-               override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable)
-                {
-                   println("Login Error")
-                      showLoginFailedSnackbar("Login error: ${t.message}")
-                 }
-             })
-         }
+                    token?.let {
+                        val editor = sharedPreferences.edit()
+                        editor.putString("auth_token", it)
+                        editor.apply()
 
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    }
+                } else {
+                    println("User Not Logged In")
+                    showLoginFailedSnackbar("Login failed: ${response.body()?.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse<User>>, t: Throwable) {
+                println("Login Error")
+                showLoginFailedSnackbar("Login error: ${t.message}")
+            }
+        })
+    }
 
 
     private fun showLoginFailedSnackbar(message: String) {

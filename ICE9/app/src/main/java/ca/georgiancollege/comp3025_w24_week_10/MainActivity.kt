@@ -1,5 +1,4 @@
 package ca.georgiancollege.comp3025_w24_week_10
-
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -15,7 +14,10 @@ import ca.georgiancollege.comp3025_w24_week_10.databinding.AddNewMovieItemBindin
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.FirebaseApp
 
-class MainActivity : AppCompatActivity() {
+import com.google.firebase.auth.FirebaseAuth
+
+class MainActivity : AppCompatActivity()
+{
     // Declare an instance of the binding class
     private lateinit var binding: ActivityMainBinding
     private lateinit var addNewMovieBinding: AddNewMovieItemBinding
@@ -24,7 +26,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var firstAdapter: FirstAdapter
     private lateinit var movieList: MutableList<Movie>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+
+
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this)
+
+
+
+
+
+
+
+
+
+
+
         super.onCreate(savedInstanceState)
         // Inflate the layout
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,14 +53,16 @@ class MainActivity : AppCompatActivity() {
 
         val firestore = FirestoreDataManager()
         firestore.getMovies { movies ->
-            for (movie in movies) {
+            for(movie in movies)
+            {
                 println(movie.title)
             }
         }
 
         val newMovie = FirebaseMovie("MyTitle", "MyStudio")
         firestore.addMovie(newMovie) { isSuccess ->
-            if (isSuccess) {
+            if(isSuccess)
+            {
                 println("Success!")
             }
         }
@@ -57,22 +77,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             // click on a row to update
-            firstAdapter.onMovieClick = { movie ->
+            firstAdapter.onMovieClick = {movie->
                 showUpdateMovieDialog(movie)
             }
 
             // Setup swipe to delete
-            val swipeToDeleteCallback = object :
-                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
+            val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+            {
+                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean
+                {
                     return false // not used
                 }
 
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)
+                {
                     AlertDialog.Builder(this@MainActivity).apply {
                         setTitle(R.string.delete_movie)
                         setMessage(R.string.are_you_sure)
@@ -100,12 +118,13 @@ class MainActivity : AppCompatActivity() {
 
         // add the FAB
         addMovieFAB = binding.addMovieFAB
-        addMovieFAB.setOnClickListener { showAddMovieDialog() }
+        addMovieFAB.setOnClickListener{ showAddMovieDialog() }
 
         binding.logoutButton.setOnClickListener { logoutUser() }
     }
 
-    private fun showAddMovieDialog() {
+    private fun showAddMovieDialog()
+    {
         val dialogTitle = getString(R.string.add_dialog_title)
         val positiveButtonTitle = getString(R.string.add_movie)
         val builder = AlertDialog.Builder(this)
@@ -125,7 +144,8 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    private fun showUpdateMovieDialog(movie: Movie) {
+    private fun showUpdateMovieDialog(movie: Movie)
+    {
         val dialogTitle = getString(R.string.update_dialog_title)
         val positiveButtonTitle = getString(R.string.update_movie)
         val builder = AlertDialog.Builder(this)
@@ -152,7 +172,8 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    private fun logoutUser() {
+    private fun logoutUser()
+    {
         val sharedPreferences = getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             remove("auth_token")
