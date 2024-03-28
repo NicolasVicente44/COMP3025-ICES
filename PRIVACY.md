@@ -16,4 +16,4 @@ Changes to This Privacy Policy
 We reserve the right to modify this privacy policy at any time. Any changes will be effective immediately upon posting the updated policy. Users are encouraged to periodically review this policy to stay informed about our privacy practices.
 
 Contact Us
-If you have any questions or suggestions about our Privacy Policy, please contact us at tom.tsiliopoulos@gmail.com.
+If you have any questions or suggestions about our Privacy Policy, please contact us at nicolas.a.vicente44@gmail.com.
