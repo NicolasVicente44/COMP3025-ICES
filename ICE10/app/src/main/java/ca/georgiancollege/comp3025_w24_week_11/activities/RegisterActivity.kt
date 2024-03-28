@@ -1,9 +1,9 @@
-package ca.georgiancollege.comp3025_w24_week_10
+package ca.georgiancollege.comp3025_w24_week_11.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import ca.georgiancollege.comp3025_w24_week_10.databinding.ActivityRegisterBinding
+import ca.georgiancollege.comp3025_w24_week_11.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 

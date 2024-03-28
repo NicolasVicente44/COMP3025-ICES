@@ -1,19 +1,19 @@
 package ca.georgiancollege.comp3025_w24_week_10
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ca.georgiancollege.comp3025_w24_week_10.databinding.ActivityMainBinding
-import ca.georgiancollege.comp3025_w24_week_10.databinding.AddNewMovieItemBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+import androidx.activity.viewModels
+import ca.georgiancollege.comp3025_w24_week_10.databinding.AddNewMovieItemBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +47,29 @@ class MainActivity : AppCompatActivity() {
         //initialize floating action button for creation of movie
         binding.addMovieFAB.setOnClickListener { showAddMovieDialog() }
 
+        // Setup swipe to delete
+        val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false // not used
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val movieId = adapter.getItemId(position)
+                // Call deleteMovie method from FirestoreDataManager passing movieId
+                firestoreDataManager.deleteMovie(movieId.toString()) { isSuccess ->
+                    if (isSuccess) {
+                        viewModel.getAllMovies() // Refresh movies
+                    } else {
+                        // Handle deletion failure
+                    }
+                }
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(binding.FirstRecyclerView)
+
     }
 
     override fun onStart() {
@@ -59,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         auth.removeAuthStateListener(authListener)
     }
-
 
     private fun showAddMovieDialog() {
         val dialogBinding = AddNewMovieItemBinding.inflate(layoutInflater)
@@ -77,14 +99,12 @@ class MainActivity : AppCompatActivity() {
                 // Call the method to add the movie to Firestore
                 firestoreDataManager.addMovie(newMovie) { isSuccess ->
                     if (isSuccess) {
-                        // Movie added successfully
-                        // You can show a message or perform any other action here
-                        Log.d(TAG, "Movie added successfully")
-                        fetchMovies() // Update the movie list
+
+                        Log.d("Successful movie add", "Movie added successfully")
+                        fetchMovies() // Update the movies displayed to include the new movie added
                     } else {
-                        // Movie addition failed
-                        // You can show an error message or perform any other action here
-                        Log.e(TAG, "Failed to add movie")
+
+                        Log.e("Failed movie add", "Failed to add movie")
                     }
                 }
             }
@@ -95,11 +115,6 @@ class MainActivity : AppCompatActivity() {
 
         dialog.show()
     }
-
-    companion object {
-        private const val TAG = "MainActivity" // Use your desired tag for logging
-    }
-
 
     private fun fetchMovies() {
         firestoreDataManager.getMovies { movies ->
@@ -119,5 +134,4 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 }
-
 
