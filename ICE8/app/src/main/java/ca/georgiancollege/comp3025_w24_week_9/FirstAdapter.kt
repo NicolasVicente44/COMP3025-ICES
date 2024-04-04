@@ -17,7 +17,7 @@ class FirstAdapter(private var dataSet: List<FirebaseMovie>) :
         val binding = TextRowItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
-
+q
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Use view binding to set the text
         viewHolder.binding.title.text = dataSet[position].title
