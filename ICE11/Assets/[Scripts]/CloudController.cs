@@ -11,7 +11,9 @@ public class CloudController : MonoBehaviour
     public float bottomBound;
     public float leftBound;
     public float rightBound;
-    public float horizontalDrift;
+    public float lowestDrift;
+    public float highestDrift;
+    public float driftAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -28,27 +30,31 @@ public class CloudController : MonoBehaviour
 
     void Move()
     {
-        
-        float moveX = 0; 
-        float moveY = verticalSpeed;
-
-        
-        moveX += horizontalDrift;
+        float moveX = driftAmount; // Horizontal movement
+        float moveY = verticalSpeed; // Vertical movement
 
         // Update position
         transform.position -= new Vector3(moveX, moveY, 0);
     }
 
+
     void ResetGameObject()
     {
-        var randomX = Random.Range(leftBound, rightBound);
+        // Generate a random X coordinate within the visible screen area
+        float randomX = Random.Range(leftBound, rightBound);
+
+        // Clamp the randomX within the specified leftBound and rightBound
+        randomX = Mathf.Clamp(randomX, leftBound, rightBound);
+
+        // Set the cloud's position
         transform.position = new Vector3(randomX, topBound, 0);
 
+        // Set other parameters
         verticalSpeed = Random.Range(lowestVerticalSpeed, topVeticalSpeed);
-
-        float driftAmount = Random.Range(-horizontalDrift, horizontalDrift);
-        transform.position += new Vector3(driftAmount, 0, 0);
+        driftAmount = Random.Range(lowestDrift, highestDrift);
     }
+
+
 
 
     void CheckBounds()
