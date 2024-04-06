@@ -14,7 +14,7 @@ public class IslandController : MonoBehaviour
     void Start()
     {
         ResetGameObject();
-
+        
     }
 
     // Update is called once per frame
