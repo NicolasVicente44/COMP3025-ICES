@@ -99,6 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b324fb74b910c4687f99ed7095e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 0.01
+  verticalSpeed: 5
   topBound: 9.4
   bottomBound: -9.4

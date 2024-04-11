@@ -18,14 +18,14 @@ public class OceanControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();    
+        Move();
         CheckBounds();
     }
 
 
     void Move()
     {
-        transform.position -= new Vector3(0, verticalSpeed, 0);
+        transform.position -= new Vector3(0, verticalSpeed * Time.deltaTime, 0);
     }
 
     void ResetGameObject()
